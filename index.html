@@ -107,15 +107,15 @@
             border: 2px solid black;
         }
 
-        .fade-on {
+        .fade-off {
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 4s ease-in-out;
             /* transform: translateY(10rem); */
         }
 
-        .fade-in {
+        .fade-on {
             opacity: 1;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 4s ease-in-out;
             /* transform: translateY(0rem); */
         }
     </style>
@@ -129,7 +129,6 @@
             <div class="hero-image-box-container">
                 <div class="image-box">
                     <img src="red-and-blue-pillars-wallpaper-abstract-background-free-image.jpeg" alt="">
-                    <img src="images.jpeg" alt="">
                 </div>
                 <div class="image-box">
                     <img src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
@@ -151,10 +150,10 @@
                 <div class="image-box">
                     <img src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
                         alt="">
-                    <img src="download.jpeg" alt="">
                 </div>
             </div>
         </div>
+        <!-- <img src="images (1).jpeg" alt=""> -->
 
     </div>
     <script>
@@ -164,23 +163,19 @@
         // console.log(Array.from(img_Container))
         let i = 2;
 
+        let contai_Image = [["download (1).jpeg", "download (2).jpeg", "download (3).jpeg", "download (4).jpeg", "download (5).jpeg", "download (6).jpeg", "download (7).jpeg",], ["download (8).jpeg", "download (9).jpeg", "download (10).jpeg", "download (11).jpeg", "download (12).jpeg", "download (13).jpeg", "download (14).jpeg",], ["images (1).jpeg", "images (2).jpeg", "images (3).jpeg", "images (4).jpeg", "images (5).jpeg", "images (6).jpeg", "images (7).jpeg"]]
 
+        console.log(contai_Image)
 
 
         setTimeout(() => {
-            function getRandomImageURL() {
-  const categories = ["chai", "snacks", "tea", "food", "kitchen", "breakfast"];
-  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-  const randomSeed = Math.floor(Math.random() * 1000); // For uniqueness
-  return `https://source.unsplash.com/400x600/?${randomCategory}&sig=${randomSeed}`;
-}
-console.log(getRandomImageURL())
+
             // setInterval(myfun,1000);
             function opacity_low() {
                 Array.from(image_box).forEach((element, index) => {
 
-                    element.classList.add("fade-on");
-                    element.classList.remove("fade-in");
+                    element.classList.add("fade-off");
+                    element.classList.remove("fade-on");
                     element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
 
                 })
@@ -188,26 +183,46 @@ console.log(getRandomImageURL())
             function opacity_high() {
                 Array.from(image_box).forEach((element, index) => {
                     // element.style.opacity ="1";
-                    element.classList.add("fade-in");
-                    element.classList.remove("fade-on");
+                    element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
+                    element.classList.add("fade-on");
+                    element.classList.remove("fade-off");
                 })
             }
+            // let i = 0;
             function change_img() {
+            
+                if (i >= 3) {
+                    i = 0;
+                }
                 Array.from(image_box).forEach((element, index) => {
+                    // isme hum opcity 0
                     setTimeout(() => {
-                        element.classList.add("fade-on");
-                        element.classList.remove("fade-in");
-                        // element.style.transition = `opacity ${index * 400}ms linear, transform 500ms ease-in-out`;
-                
-                    element.querySelector("img").src = `/download (${index}).jpeg`;
-                    setTimeout(() => {
-                        // element.style.transition = `opacity ${index * 400}ms linear, transform 500ms ease-in-out`;
-                        element.classList.add("fade-in");
+                        element.classList.add("fade-off");
                         element.classList.remove("fade-on");
+                        element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
+                        // element.style.transform = `translateY(30rem)`;
+                        element.querySelector("img").src = `${contai_Image[(i-1)][index]}`;
+                        console.log(`the value of contai_image ${contai_Image[i-1][index]} index: ${index} i : ${i-1}`);
+                        // element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
 
-                    }, 1000);
-                }, 100*index);
+
+                        setTimeout(() => {
+                         
+                            // isme hum opcity 1 karenge
+                            element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
+                            element.classList.add("fade-on");
+                            element.classList.remove("fade-off");
+
+               
+                        }, 100* index );
+                        
+                    }, 100* index);
                 })
+
+
+                console.log(i);
+                i++;
+
             }
 
             Array.from(image_box).forEach((element, index) => {
@@ -230,16 +245,15 @@ console.log(getRandomImageURL())
 
             })
 
-            opacity_low();
-            setTimeout(() => {
-                setInterval(change_img, 7000)
+            opacity_high();
+
+                setInterval(change_img, 6000)
 
 
-            }, 1000)
-            setTimeout(() => {
-
-                opacity_high();
-            }, 1000)
+          
+    
+             
+         
         }, 100)
 
     </script>
