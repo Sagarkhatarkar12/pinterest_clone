@@ -1,11 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinterst</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 62.5%;
+            font-family: sans-serif;
+        }
+
+        .hero-section {
+            /* background-color: red; */
+            height: 80vh;
+            width: 100%;
+
+
+        }
+
+        .hero-heading {
+            color: white;
+            font-size: 4rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-inner {
+            background-color: #f5f5f5;
+            height: 100%;
+            width: 100%;
+        }
+
+        .hero-inner-heading {
+
+            font-size: 4rem;
+            text-align: center;
+            color: #c28b00;
+            /* padding: 2rem; */
+        }
+
+        .hero-image-box-container {
+            height: 100%;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            gap: 1rem;
+            overflow: hidden;
+
+
+        }
+
+        .image-box {
+            height: 100%;
+            /* width: 15rem; */
+            /* background-color: red; */
+            /* border: 2px solid black; */
+            border-radius: 3rem;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 500ms linear, transform 500ms ease-in-out;
+
+
+        }
+
+        .image-box img {
+            /* height: 100%;
+            width: 100%; */
+        }
+
+        .hero-image-box-container:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+        }
+
+        .image-box img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .image-box :nth-child(1) {
+
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .image-box :nth-child(2) {
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-image-box-container {
+
+            overflow: hidden;
+
+            border: none;
+        }
+
+        .hero-image-box-container:first-child {
+            border: 2px solid black;
+        }
+
+        .fade-on {
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            /* transform: translateY(10rem); */
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+            /* transform: translateY(0rem); */
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello, World!</h1>
+    <div class="hero-section">
+        <h1 class="hero-heading">Get your next</h1>
+        <div class="hero-inner">
+            <h1 class="hero-inner-heading">chai time snacks idea</h1>
+            <div class="hero-image-box-container">
+                <div class="image-box">
+                    <img src="red-and-blue-pillars-wallpaper-abstract-background-free-image.jpeg" alt="">
+                    <img src="images.jpeg" alt="">
+                </div>
+                <div class="image-box">
+                    <img src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
+                        alt="">
+                </div>
+                <div class="image-box">
+                    <img src="download.jpeg" alt="">
+                </div>
+                <div class="image-box">
+                    <img src="images.jpeg" alt="">
+                </div>
+                <div class="image-box">
+                    <img src="download.jpeg" alt="">
+                </div>
+                <div class="image-box">
+                    <img src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
+                        alt="">
+                </div>
+                <div class="image-box">
+                    <img src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
+                        alt="">
+                    <img src="download.jpeg" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        let image_box = document.querySelectorAll(".image-box");
+        let img_Container = document.querySelector(".hero-image-box-container");
+        // console.log(image_box);
+        // console.log(Array.from(img_Container))
+        let i = 2;
+
+
+
+
+        setTimeout(() => {
+            function getRandomImageURL() {
+  const categories = ["chai", "snacks", "tea", "food", "kitchen", "breakfast"];
+  const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+  const randomSeed = Math.floor(Math.random() * 1000); // For uniqueness
+  return `https://source.unsplash.com/400x600/?${randomCategory}&sig=${randomSeed}`;
+}
+console.log(getRandomImageURL())
+            // setInterval(myfun,1000);
+            function opacity_low() {
+                Array.from(image_box).forEach((element, index) => {
+
+                    element.classList.add("fade-on");
+                    element.classList.remove("fade-in");
+                    element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
+
+                })
+            }
+            function opacity_high() {
+                Array.from(image_box).forEach((element, index) => {
+                    // element.style.opacity ="1";
+                    element.classList.add("fade-in");
+                    element.classList.remove("fade-on");
+                })
+            }
+            function change_img() {
+                Array.from(image_box).forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add("fade-on");
+                        element.classList.remove("fade-in");
+                        // element.style.transition = `opacity ${index * 400}ms linear, transform 500ms ease-in-out`;
+                
+                    element.querySelector("img").src = `/download (${index}).jpeg`;
+                    setTimeout(() => {
+                        // element.style.transition = `opacity ${index * 400}ms linear, transform 500ms ease-in-out`;
+                        element.classList.add("fade-in");
+                        element.classList.remove("fade-on");
+
+                    }, 1000);
+                }, 100*index);
+                })
+            }
+
+            Array.from(image_box).forEach((element, index) => {
+                console.log(element);
+
+                if (index >= 4) {
+                    let dumy = 4;
+                    element.style.transform = `translateY(${(dumy - i) * 15}rem)`;
+                    // element.style.opacity = "1";
+                    i++;
+                }
+
+                else {
+                    // element.style.opacity = "1";
+                    element.style.transform = `translateY(${index * 15}rem)`;
+
+
+                }
+
+
+            })
+
+            opacity_low();
+            setTimeout(() => {
+                setInterval(change_img, 7000)
+
+
+            }, 1000)
+            setTimeout(() => {
+
+                opacity_high();
+            }, 1000)
+        }, 100)
+
+    </script>
 </body>
+
 </html>
