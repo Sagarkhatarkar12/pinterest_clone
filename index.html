@@ -159,18 +159,9 @@
     <script>
         let image_box = document.querySelectorAll(".image-box");
         let img_Container = document.querySelector(".hero-image-box-container");
-        // console.log(image_box);
-        // console.log(Array.from(img_Container))
         let i = 2;
-
-        let contai_Image = [["download (1).jpeg", "download (2).jpeg", "download (3).jpeg", "download (4).jpeg", "download (5).jpeg", "download (6).jpeg", "download (7).jpeg",], ["download (8).jpeg", "download (9).jpeg", "download (10).jpeg", "download (11).jpeg", "download (12).jpeg", "download (13).jpeg", "download (14).jpeg",], ["images (1).jpeg", "images (2).jpeg", "images (3).jpeg", "images (4).jpeg", "images (5).jpeg", "images (6).jpeg", "images (7).jpeg"]]
-
-        console.log(contai_Image)
-
-
+        let contai_Image = [["download (1).jpeg", "download (2).jpeg", "download (3).jpeg", "download (4).jpeg", "download (5).jpeg", "download (6).jpeg", "download (7).jpeg",], ["download (8).jpeg", "download (9).jpeg", "download (10).jpeg", "download (11).jpeg", "download (12).jpeg", "download (13).jpeg", "download (14).jpeg",], ["images (1).jpeg", "images (2).jpeg", "images (3).jpeg", "images (4).jpeg", "images (5).jpeg", "images (6).jpeg", "images (7).jpeg"]];
         setTimeout(() => {
-
-            // setInterval(myfun,1000);
             function opacity_low() {
                 Array.from(image_box).forEach((element, index) => {
 
@@ -190,33 +181,41 @@
             }
             // let i = 0;
             function change_img() {
-            
+
                 if (i >= 3) {
                     i = 0;
                 }
                 Array.from(image_box).forEach((element, index) => {
-                    // isme hum opcity 0
                     setTimeout(() => {
                         element.classList.add("fade-off");
                         element.classList.remove("fade-on");
-                        element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
-                        // element.style.transform = `translateY(30rem)`;
-                        element.querySelector("img").src = `${contai_Image[(i-1)][index]}`;
-                        console.log(`the value of contai_image ${contai_Image[i-1][index]} index: ${index} i : ${i-1}`);
-                        // element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
+                        element.style.transition = `opacity ${index * 200}ms linear, transform 800ms ease-in-out`;
+                        element.style.transform = `translateY(${index * 100}rem)`;
+                        setTimeout(() => {
+                        }, 1000)
+                        element.querySelector("img").src = `${contai_Image[(i - 1)][index]}`;
 
 
                         setTimeout(() => {
-                         
-                            // isme hum opcity 1 karenge
-                            element.style.transition = `opacity ${index * 200}ms linear, transform 500ms ease-in-out`;
+
+                            element.style.transition = `opacity ${index * 200}ms linear, transform 800ms ease-in-out`;
+                            if (index >= 4) {
+                                let dumy = 6;
+                                element.style.transform = `translateY(${(dumy - index) * 10}rem)`;
+                            }
+                            else {
+
+                                element.style.transform = `translateY(${index * 10}rem)`;
+                            }
+
                             element.classList.add("fade-on");
+
                             element.classList.remove("fade-off");
 
-               
-                        }, 100* index );
-                        
-                    }, 100* index);
+
+                        }, 200 * index);
+
+                    }, 50 * index);
                 })
 
 
@@ -247,13 +246,13 @@
 
             opacity_high();
 
-                setInterval(change_img, 6000)
+            setInterval(change_img, 6000)
 
 
-          
-    
-             
-         
+
+
+
+
         }, 100)
 
     </script>
