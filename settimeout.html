@@ -118,6 +118,7 @@
             font-size: 2.5rem;
             font-weight: bold;
         }
+
         .navigation-bar .nav-list li a {
             text-decoration: none;
             color: black;
@@ -135,7 +136,7 @@
             align-items: center;
         }
 
-     
+
         @keyframes fade-on {
             from {
                 opacity: 0;
@@ -148,6 +149,16 @@
             }
         }
 
+        @keyframes transform_on {
+            from {
+                transform: translateY(0rem);
+            }
+
+            to {
+                transform: translateY(20rem);
+            }
+        }
+
         .left-navigation-bar h1 {
             height: 3rem;
             width: 10rem;
@@ -157,47 +168,50 @@
             height: 100%;
             width: 100%;
         }
-        .btn  {
+
+        .btn {
             color: white;
             font-size: 1.4rem;
             text-decoration: none;
             font-weight: bold;
             /* border: 2px solid black; */
         }
+
         .btn-second {
             background-color: #e9e9e9;
             color: black;
         }
 
 
-        .hero-heading{
+        .hero-heading {
             color: black;
         }
-        .heading-contain{
+
+        .heading-contain {
             height: 6rem;
             overflow: hidden;
         }
-        .hero-image-box-container :nth-child(1){
 
-        }
-        .button-container{
+        .hero-image-box-container :nth-child(1) {}
+
+        .button-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 1rem;
             cursor: pointer;
         }
-.btn-image{
-    border-radius: 50%;
-    height: 20px;
-    cursor: pointer;
-    /* background-color: gray; */
-    border: none;
-    width: 20px;
-}
-.active{
 
-}
+        .btn-image {
+            border-radius: 50%;
+            height: 20px;
+            cursor: pointer;
+            /* background-color: gray; */
+            border: none;
+            width: 20px;
+        }
+
+        .active {}
     </style>
 </head>
 
@@ -218,7 +232,7 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Business</a></li>
                 <li><a href="#">Blog</a></li>
-                <a class="btn" href="#">Login</a> 
+                <a class="btn" href="#">Login</a>
                 <a class="btn btn-second" href="">sign up</a>
             </ul>
 
@@ -231,8 +245,8 @@
         <h1 class="hero-heading">Get your next</h1>
         <div class="hero-inner">
             <div class="heading-contain">
-            <h1 class="hero-inner-heading">chai time snacks idea</h1>
-        </div>
+                <h1 class="hero-inner-heading">chai time snacks idea</h1>
+            </div>
             <div class="button-container">
                 <button class="btn-image"> </button>
                 <button class="btn-image"> </button>
@@ -240,7 +254,8 @@
             </div>
             <div class="hero-image-box-container">
                 <div class="image-box">
-                    <img style="height: 50%;" src="red-and-blue-pillars-wallpaper-abstract-background-free-image.jpeg" alt="">
+                    <img style="height: 50%;" src="red-and-blue-pillars-wallpaper-abstract-background-free-image.jpeg"
+                        alt="">
                     <img style="height: 50%;" src="download (0).jpeg" alt="">
                 </div>
                 <div class="image-box">
@@ -260,9 +275,11 @@
                     <img src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
                         alt="">
                 </div>
-                <div class="image-box">
-                    <img style="  height:50%"src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg" alt="">
-                        <img style="height: 50%"src="download (0).jpeg" alt="">
+                <div style="display: flex; flex-direction: column; gap: 2rem;" class="image-box">
+                    <img style="  height:50%"
+                        src="ai-generated-empty-wooden-table-on-the-natural-background-for-product-display-free-photo.jpg"
+                        alt="">
+                    <img style="height: 50%" src="download (0).jpeg" alt="">
                 </div>
             </div>
         </div>
@@ -277,20 +294,20 @@
 
         let contai_Image = [["download (1).jpeg", "download (2).jpeg", "download (3).jpeg", "download (4).jpeg", "download (5).jpeg", "download (6).jpeg", "download (7).jpeg",], ["download (8).jpeg", "download (9).jpeg", "download (10).jpeg", "download (11).jpeg", "download (12).jpeg", "download (13).jpeg", "download (14).jpeg",], ["images (1).jpeg", "images (2).jpeg", "images (3).jpeg", "images (4).jpeg", "images (5).jpeg", "images (6).jpeg", "images (7).jpeg"]];
         let heading_image = ['chai time snacks idea', 'home decor idea', 'outfit idea'];
-        let rgb = ["red","blue","green"]
+        let rgb = ["red", "blue", "green"]
         let i = 0;
-        function buton_change(current_slide){
-          let btn = document.querySelectorAll(".btn-image");
-          btn.forEach((element,index)=>{
-            if(index ==current_slide){
-                element.classList.add("active");
-                element.style.backgroundColor = `${rgb[current_slide]}`;
-            }
-            else{
-                element.classList.remove("active");
-                element.style.backgroundColor = "gray";
-            }
-          })
+        function buton_change(current_slide) {
+            let btn = document.querySelectorAll(".btn-image");
+            btn.forEach((element, index) => {
+                if (index == current_slide) {
+                    element.classList.add("active");
+                    element.style.backgroundColor = `${rgb[current_slide]}`;
+                }
+                else {
+                    element.classList.remove("active");
+                    element.style.backgroundColor = "gray";
+                }
+            })
         }
 
         function change_img() {
@@ -310,6 +327,7 @@
                 if (index >= 4) {
                     let dumy = 6;
                     element.style.transform = `translateY(${(dumy - index) * 10}rem)`;
+
                 } else {
                     element.style.transform = `translateY(${index * 10}rem)`;
                 }
