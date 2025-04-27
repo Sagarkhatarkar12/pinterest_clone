@@ -33,7 +33,7 @@ function change_img() {
         element.style.animation = 'none';
         element.offsetWidth; // 
 
-        element.querySelector("img").src = contai_Image[i][index];
+        element.querySelector("img").src =`/assets/image/${contai_Image[i][index]}`;
         if (index >= 4) {
             let dumy = 6;
             element.style.transform = `translateY(${(dumy - index) * 10}rem)`;
